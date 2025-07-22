@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, ArrowRight, Sparkles, Star } from 'lucide-react';
+import { Heart, Sparkles, Star } from 'lucide-react';
 import { questions } from '@/data/questions';
 import { results } from '@/data/results';
 import { Answer } from '@/types';

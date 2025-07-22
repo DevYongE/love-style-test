@@ -2,6 +2,17 @@
 
 import { useEffect } from 'react';
 
+// Google AdSense 타입 정의
+interface AdSenseGoogle {
+  push: (config: Record<string, unknown>) => void;
+}
+
+declare global {
+  interface Window {
+    adsbygoogle?: AdSenseGoogle[];
+  }
+}
+
 interface AdSenseAdProps {
   adSlot: string;
   adClient?: string;
@@ -22,7 +33,9 @@ export default function AdSenseAd({
   useEffect(() => {
     try {
       // AdSense 광고 로드
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (typeof window !== 'undefined' && (window as any).adsbygoogle) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
       }
     } catch (error) {
