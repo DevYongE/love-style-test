@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { RotateCcw, Share2, Heart, Sparkles, Star } from 'lucide-react';
 import { TestResult } from '@/types';
+import AdSenseAd from './AdSenseAd';
 
 interface ResultCardProps {
   result: TestResult;
@@ -94,6 +95,20 @@ export default function ResultCard({ result, onRestart }: ResultCardProps) {
           </div>
         </motion.div>
 
+        {/* 첫 번째 광고 - 결과 설명 후 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7 }}
+          className="mb-8"
+        >
+          <AdSenseAd 
+            adSlot="YOUR_AD_SLOT_1"
+            className="rounded-2xl overflow-hidden shadow-lg"
+            style={{ display: 'block', minHeight: '250px' }}
+          />
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -129,6 +144,20 @@ export default function ResultCard({ result, onRestart }: ResultCardProps) {
               </motion.div>
             ))}
           </div>
+        </motion.div>
+
+        {/* 두 번째 광고 - 상세 분석 후 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.1 }}
+          className="mb-8"
+        >
+          <AdSenseAd 
+            adSlot="YOUR_AD_SLOT_2"
+            className="rounded-2xl overflow-hidden shadow-lg"
+            style={{ display: 'block', minHeight: '250px' }}
+          />
         </motion.div>
 
         <motion.div
@@ -179,6 +208,20 @@ export default function ResultCard({ result, onRestart }: ResultCardProps) {
             연애스타일을 알면 더 건강한 관계를 만들어갈 수 있어요 ✨
           </p>
         </motion.div>
+      </motion.div>
+
+      {/* 세 번째 광고 - 결과 카드 하단 */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.5 }}
+        className="mb-8"
+      >
+        <AdSenseAd 
+          adSlot="YOUR_AD_SLOT_3"
+          className="rounded-2xl overflow-hidden shadow-lg"
+          style={{ display: 'block', minHeight: '250px' }}
+        />
       </motion.div>
 
       <motion.div

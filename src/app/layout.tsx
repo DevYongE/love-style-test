@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geist = Geist({
@@ -30,6 +31,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <head>
+        {/* Google AdSense 인증 코드 - 실제 사용 시 content 값을 Google에서 제공받은 값으로 교체 */}
+        <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE" />
+        
+        {/* Google AdSense 스크립트 */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID"
+          crossOrigin="anonymous"
+          strategy="lazyOnload"
+        />
+      </head>
       <body
         className={`${geist.variable} ${geistMono.variable} antialiased`}
       >
