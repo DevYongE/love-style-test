@@ -73,6 +73,34 @@ export default function Home() {
     setCurrentStep('test');
   };
 
+  // 연애스타일 간단 소개 데이터
+  const stylePreview = {
+    secure: {
+      title: "안정형",
+      emoji: "💚",
+      description: "감정 표현이 자연스럽고 균형 잡힌 관계를 추구해요",
+      keywords: ["신뢰", "소통", "안정감"]
+    },
+    anxious: {
+      title: "불안형",
+      emoji: "💙", 
+      description: "사랑에 깊이 몰입하며 애정 확인을 중요하게 여겨요",
+      keywords: ["열정", "공감", "관심"]
+    },
+    avoidant: {
+      title: "회피형",
+      emoji: "🤍",
+      description: "독립성을 중시하며 자신만의 공간이 필요해요",
+      keywords: ["독립", "자율", "실용"]
+    },
+    'fearful-avoidant': {
+      title: "양가형",
+      emoji: "💜",
+      description: "사랑을 원하면서도 상처받는 것을 두려워해요",
+      keywords: ["복합", "신중", "보호"]
+    }
+  };
+
   return (
     <div className="min-h-screen heart-bg relative overflow-hidden" style={{background: 'var(--gradient-bg)'}}>
       {/* Floating hearts background */}
@@ -97,7 +125,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="text-center max-w-3xl mx-auto"
+              className="text-center max-w-6xl mx-auto"
             >
               <motion.div
                 initial={{ scale: 0, rotate: -180 }}
@@ -129,7 +157,7 @@ export default function Home() {
                 transition={{ delay: 0.4, type: "spring" }}
                 className="glass-card-strong rounded-3xl p-8 md:p-12 shadow-2xl mb-8 love-card"
               >
-                <div className="flex items-center justify-center gap-3 mb-6">
+                <div className="flex items-center justify-center gap-3 mb-8">
                   <div className="text-3xl animate-gentle-bounce">💖</div>
                   <h2 className="text-2xl md:text-3xl font-bold gradient-text-soft">
                     어떤 연애스타일인지 확인해보세요!
@@ -137,25 +165,64 @@ export default function Home() {
                   <div className="text-3xl animate-gentle-bounce" style={{animationDelay: '0.3s'}}>💕</div>
                 </div>
                 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-                  {Object.values(results).map((resultType, index) => (
-                    <motion.div 
-                      key={resultType.type} 
-                      className="text-center"
-                      initial={{ opacity: 0, y: 20 }}
+                {/* 연애스타일 카드들 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                  {Object.entries(stylePreview).map(([key, style], index) => (
+                    <motion.div
+                      key={key}
+                      initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.6 + index * 0.1 }}
+                      transition={{ delay: 0.6 + index * 0.1, type: "spring" }}
+                      className="love-card rounded-2xl p-6 hover-scale"
+                      style={{
+                        background: key === 'secure' ? 'linear-gradient(135deg, #ecfdf5, #d1fae5)' :
+                                  key === 'anxious' ? 'linear-gradient(135deg, #eff6ff, #dbeafe)' :
+                                  key === 'avoidant' ? 'linear-gradient(135deg, #f9fafb, #f3f4f6)' :
+                                  'linear-gradient(135deg, #f5f3ff, #ede9fe)'
+                      }}
                     >
-                      <motion.div 
-                        className={`w-20 h-20 rounded-full ${resultType.color} flex items-center justify-center text-3xl mx-auto mb-3 shadow-lg hover-scale`}
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        {resultType.emoji}
-                      </motion.div>
-                      <p className="text-sm font-semibold text-gray-700 white-bg-50 rounded-full px-3 py-1">
-                        {resultType.title}
-                      </p>
+                      <div className="flex items-start gap-4">
+                        <motion.div
+                          className="flex-shrink-0"
+                          whileHover={{ scale: 1.1, rotate: 10 }}
+                          transition={{ type: "spring", stiffness: 400 }}
+                        >
+                          <div className="w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-lg"
+                               style={{
+                                 background: key === 'secure' ? 'linear-gradient(135deg, #10b981, #059669)' :
+                                           key === 'anxious' ? 'linear-gradient(135deg, #3b82f6, #2563eb)' :
+                                           key === 'avoidant' ? 'linear-gradient(135deg, #6b7280, #4b5563)' :
+                                           'linear-gradient(135deg, #8b5cf6, #7c3aed)'
+                               }}>
+                            {style.emoji}
+                          </div>
+                        </motion.div>
+                        
+                        <div className="flex-1 text-left">
+                          <h3 className="text-xl font-bold text-gray-800 mb-2 gradient-text-soft">
+                            {style.title}
+                          </h3>
+                          <p className="text-gray-600 text-sm mb-3 leading-relaxed">
+                            {style.description}
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {style.keywords.map((keyword, idx) => (
+                              <span
+                                key={idx}
+                                className="px-3 py-1 text-xs font-medium rounded-full white-bg-60"
+                                style={{
+                                  color: key === 'secure' ? '#059669' :
+                                        key === 'anxious' ? '#2563eb' :
+                                        key === 'avoidant' ? '#4b5563' :
+                                        '#7c3aed'
+                                }}
+                              >
+                                #{keyword}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
                     </motion.div>
                   ))}
                 </div>
