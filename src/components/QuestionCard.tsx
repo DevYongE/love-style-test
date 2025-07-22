@@ -74,7 +74,7 @@ export default function QuestionCard({ question, onAnswer, onPrevious, questionN
           whileHover={{ scale: 1.03, x: 8, rotateY: 5, y: -8 }}
           whileTap={{ scale: 0.97 }}
           onClick={() => onAnswer('A')}
-          className="group w-full p-12 md:p-16 rounded-3xl text-left transition-all duration-300 shadow-xl hover:shadow-2xl love-card relative overflow-hidden border-4 border-pink-200 hover:border-pink-300"
+          className="group w-full py-16 px-12 md:py-20 md:px-16 rounded-3xl text-left transition-all duration-300 shadow-xl hover:shadow-2xl love-card relative overflow-hidden border-4 border-pink-200 hover:border-pink-300"
           style={{background: 'linear-gradient(135deg, #fdf2f8, #fce7f3, #fce7f3)'}}
         >
           <div className="absolute top-4 right-4 text-pink-300 text-3xl opacity-0 group-hover:opacity-100 transition-opacity animate-sparkle">💕</div>
@@ -102,7 +102,7 @@ export default function QuestionCard({ question, onAnswer, onPrevious, questionN
           whileHover={{ scale: 1.03, x: 8, rotateY: -5, y: -8 }}
           whileTap={{ scale: 0.97 }}
           onClick={() => onAnswer('B')}
-          className="group w-full p-12 md:p-16 rounded-3xl text-left transition-all duration-300 shadow-xl hover:shadow-2xl love-card relative overflow-hidden border-4 border-purple-200 hover:border-purple-300"
+          className="group w-full py-16 px-12 md:py-20 md:px-16 rounded-3xl text-left transition-all duration-300 shadow-xl hover:shadow-2xl love-card relative overflow-hidden border-4 border-purple-200 hover:border-purple-300"
           style={{background: 'linear-gradient(135deg, #f3e8ff, #e0e7ff, #e0e7ff)'}}
         >
           <div className="absolute top-4 right-4 text-purple-300 text-3xl opacity-0 group-hover:opacity-100 transition-opacity animate-sparkle">💜</div>
