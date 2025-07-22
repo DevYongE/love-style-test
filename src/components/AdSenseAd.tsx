@@ -24,7 +24,7 @@ interface AdSenseAdProps {
 
 export default function AdSenseAd({
   adSlot,
-  adClient = "ca-pub-YOUR_PUBLISHER_ID", // 실제 사용 시 본인의 Publisher ID로 교체
+  adClient = "ca-pub-5297653885125132", // 실제 Publisher ID로 업데이트
   adFormat = "auto",
   fullWidthResponsive = true,
   style = { display: 'block' },
