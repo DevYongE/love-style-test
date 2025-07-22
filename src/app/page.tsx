@@ -257,12 +257,12 @@ export default function Home() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={startTest}
-                className="btn-romantic text-white font-bold py-12 px-20 rounded-full shadow-2xl flex items-center gap-6 mx-auto text-3xl md:text-4xl love-card animate-pulse-glow relative overflow-hidden"
+                className="btn-romantic text-white font-bold py-16 px-24 rounded-full shadow-2xl flex items-center gap-8 mx-auto text-4xl md:text-5xl love-card animate-pulse-glow relative overflow-hidden w-full max-w-md"
               >
-                <div className="absolute top-2 right-4 text-3xl animate-sparkle opacity-70">✨</div>
-                <Heart className="w-10 h-10 animate-heartbeat" />
+                <div className="absolute top-3 right-6 text-4xl animate-sparkle opacity-70">✨</div>
+                <Heart className="w-12 h-12 animate-heartbeat" />
                 💕 테스트 시작하기 💕
-                <Sparkles className="w-10 h-10 animate-pulse" />
+                <Sparkles className="w-12 h-12 animate-pulse" />
               </motion.button>
               
               <motion.p
