@@ -15,22 +15,32 @@ export default function Home() {
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [result, setResult] = useState<string | null>(null);
 
+  const startTest = () => {
+    setCurrentStep('test');
+    setCurrentQuestionIndex(0);
+    setAnswers([]);
+  };
+
+  const goToPreviousQuestion = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
+      // Remove the last answer when going back
+      setAnswers(prev => prev.slice(0, -1));
+    }
+  };
+
   const handleAnswer = (selectedOption: 'A' | 'B') => {
     const newAnswer: Answer = {
       questionId: questions[currentQuestionIndex].id,
       selectedOption,
     };
 
-    const newAnswers = [...answers, newAnswer];
-    setAnswers(newAnswers);
+    setAnswers(prev => [...prev, newAnswer]);
 
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      // 테스트 완료 - 결과 계산
-      const resultType = calculateResult(newAnswers);
-      setResult(resultType);
-      setCurrentStep('result');
+      calculateResult([...answers, newAnswer]);
     }
   };
 
@@ -67,10 +77,6 @@ export default function Home() {
     setCurrentQuestionIndex(0);
     setAnswers([]);
     setResult(null);
-  };
-
-  const startTest = () => {
-    setCurrentStep('test');
   };
 
   // 연애스타일 간단 소개 데이터
@@ -247,11 +253,12 @@ export default function Home() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={startTest}
-                className="btn-romantic text-white font-bold py-5 px-10 rounded-full shadow-2xl flex items-center gap-3 mx-auto text-xl love-card animate-pulse-glow"
+                className="btn-romantic text-white font-bold py-8 px-16 rounded-full shadow-2xl flex items-center gap-4 mx-auto text-2xl md:text-3xl love-card animate-pulse-glow relative overflow-hidden"
               >
-                <Heart className="w-6 h-6" />
-                테스트 시작하기
-                <ArrowRight className="w-6 h-6" />
+                <div className="absolute top-1 right-2 text-2xl animate-sparkle opacity-70">✨</div>
+                <Heart className="w-8 h-8 animate-heartbeat" />
+                💕 테스트 시작하기 💕
+                <Sparkles className="w-8 h-8 animate-pulse" />
               </motion.button>
               
               <motion.p
@@ -314,6 +321,7 @@ export default function Home() {
               <QuestionCard
                 question={questions[currentQuestionIndex]}
                 onAnswer={handleAnswer}
+                onPrevious={currentQuestionIndex > 0 ? goToPreviousQuestion : undefined}
                 questionNumber={currentQuestionIndex + 1}
               />
             </motion.div>
