@@ -60,20 +60,27 @@ export default function Home() {
       const question = questions.find(q => q.id === answer.questionId);
       if (question) {
         // 각 질문의 카테고리에 따라 점수 배정
-        if (question.category === 'secure') {
-          scores.secure += answer.selectedOption === 'A' ? 2 : 1;
-        } else if (question.category === 'anxious') {
-          scores.anxious += answer.selectedOption === 'A' ? 2 : 1;
-        } else if (question.category === 'avoidant') {
-          scores.avoidant += answer.selectedOption === 'A' ? 2 : 1;
-        } else if (question.category === 'fearful-avoidant') {
-          scores['fearful-avoidant'] += answer.selectedOption === 'A' ? 2 : 1;
-        }
+        const score = answer.selectedOption === 'A' ? 2 : 1;
+        scores[question.category] += score;
       }
     });
 
-    // 가장 높은 점수의 타입 반환
-    return Object.entries(scores).reduce((a, b) => scores[a[0]] > scores[b[0]] ? a : b)[0];
+    // 가장 높은 점수의 타입들을 찾기
+    const maxScore = Math.max(...Object.values(scores));
+    const topTypes = Object.entries(scores)
+      .filter(([_, score]) => score === maxScore)
+      .map(([type, _]) => type);
+
+    // 동점인 경우 우선순위: secure > anxious > avoidant > fearful-avoidant
+    const priority = ['secure', 'anxious', 'avoidant', 'fearful-avoidant'];
+    
+    for (const type of priority) {
+      if (topTypes.includes(type)) {
+        return type;
+      }
+    }
+
+    return topTypes[0]; // fallback
   };
 
   const resetTest = () => {
@@ -257,12 +264,25 @@ export default function Home() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={startTest}
-                className="btn-romantic text-white font-bold py-20 px-24 rounded-full shadow-2xl flex items-center gap-8 mx-auto text-4xl md:text-5xl love-card animate-pulse-glow relative overflow-hidden w-full max-w-md"
+                className="text-white font-bold rounded-full shadow-2xl flex items-center justify-center gap-6 mx-auto love-card animate-pulse-glow relative overflow-hidden"
+                style={{
+                  background: 'linear-gradient(45deg, #ec4899, #8b5cf6)',
+                  padding: '1.5rem 2.5rem',
+                  fontSize: '1.5rem',
+                  minHeight: '80px',
+                  minWidth: '300px',
+                  maxWidth: '450px',
+                  width: '100%',
+                  boxShadow: '0 0 40px rgba(236, 72, 153, 0.5), 0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease'
+                }}
               >
                 <div className="absolute top-4 right-6 text-4xl animate-sparkle opacity-70">✨</div>
-                <Heart className="w-12 h-12 animate-heartbeat" />
-                💕 테스트 시작하기 💕
-                <Sparkles className="w-12 h-12 animate-pulse" />
+                <Heart className="w-12 h-12 animate-heartbeat flex-shrink-0" />
+                <span className="font-extrabold tracking-wide">💕 테스트 시작하기 💕</span>
+                <Sparkles className="w-12 h-12 animate-pulse flex-shrink-0" />
               </motion.button>
               
               <motion.p

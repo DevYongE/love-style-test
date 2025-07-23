@@ -30,29 +30,16 @@ export default function AdSenseAd({
   style = { display: 'block' },
   className = ""
 }: AdSenseAdProps) {
-  useEffect(() => {
-    try {
-      // AdSense 광고 로드
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if (typeof window !== 'undefined' && (window as any).adsbygoogle) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
-      }
-    } catch (error) {
-      console.error('AdSense error:', error);
-    }
-  }, []);
-
+  // 임시로 AdSense 비활성화 (오류 방지)
   return (
-    <div className={`adsense-container ${className}`}>
-      <ins
-        className="adsbygoogle"
-        style={style}
-        data-ad-client={adClient}
-        data-ad-slot={adSlot}
-        data-ad-format={adFormat}
-        data-full-width-responsive={fullWidthResponsive.toString()}
-      />
+    <div className={`adsense-container ${className}`} style={style}>
+      <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
+        <div className="text-center p-8">
+          <div className="text-2xl mb-2">📢</div>
+          <p>광고 영역</p>
+          <p className="text-xs mt-1">(개발 중)</p>
+        </div>
+      </div>
     </div>
   );
 } 

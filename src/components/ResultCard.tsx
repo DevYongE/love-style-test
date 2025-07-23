@@ -170,7 +170,16 @@ export default function ResultCard({ result, onRestart }: ResultCardProps) {
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleShare}
-            className="btn-romantic text-white font-bold py-4 px-8 rounded-full shadow-2xl flex items-center gap-3 justify-center text-lg love-card relative overflow-hidden"
+            className="text-white font-bold rounded-full shadow-2xl flex items-center gap-4 justify-center love-card relative overflow-hidden"
+            style={{
+              background: 'linear-gradient(45deg, #ec4899, #8b5cf6)',
+              padding: '1.5rem 2.5rem',
+              fontSize: '1.25rem',
+              minHeight: '70px',
+              minWidth: '200px',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease'
+            }}
           >
             <Share2 className="w-6 h-6" />
             결과 공유하기
@@ -181,8 +190,15 @@ export default function ResultCard({ result, onRestart }: ResultCardProps) {
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
             onClick={onRestart}
-            className="text-white font-bold py-4 px-8 rounded-full shadow-2xl flex items-center gap-3 justify-center text-lg love-card transition-all duration-300"
-            style={{background: 'linear-gradient(45deg, #6b7280, #4b5563)'}}
+            className="text-white font-bold rounded-full shadow-2xl flex items-center gap-4 justify-center love-card transition-all duration-300"
+            style={{
+              background: 'linear-gradient(45deg, #6b7280, #4b5563)',
+              padding: '1.5rem 2.5rem',
+              fontSize: '1.25rem',
+              minHeight: '70px',
+              minWidth: '200px',
+              cursor: 'pointer'
+            }}
           >
             <RotateCcw className="w-6 h-6" />
             다시 테스트하기

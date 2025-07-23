@@ -20,14 +20,14 @@ export const questions: Question[] = [
     question: "데이트 도중 맛집을 찾으면, 나는...",
     optionA: "느낌/분위기 보고 결정한다",
     optionB: "리뷰와 정보 보고 선택한다",
-    category: 'secure'
+    category: 'avoidant'
   },
   {
     id: 4,
     question: "연인에게 선물을 고른다면, 나는...",
     optionA: "예쁘고 기억에 남는 걸 선택한다",
     optionB: "실용적이고 필요한 걸 고른다",
-    category: 'anxious'
+    category: 'fearful-avoidant'
   },
   {
     id: 5,
@@ -48,7 +48,7 @@ export const questions: Question[] = [
     question: "데이트룩은, 나는...",
     optionA: "전날부터 정성 들여 준비한다",
     optionB: "당일 마음 내키는 대로 고른다",
-    category: 'anxious'
+    category: 'fearful-avoidant'
   },
   {
     id: 8,
@@ -76,7 +76,7 @@ export const questions: Question[] = [
     question: "감정 표현은, 나는...",
     optionA: "자유롭게 표현하고 싶다",
     optionB: "감정을 잘 숨기고 조심스러운 편이다",
-    category: 'avoidant'
+    category: 'secure'
   },
   {
     id: 12,

@@ -59,14 +59,14 @@ export default function QuestionCard({ question, onAnswer, onPrevious, questionN
           className="flex items-center justify-center gap-3 mb-8"
         >
           <Heart className="text-pink-400 w-7 h-7 animate-heartbeat" />
-          <h3 className="text-3xl md:text-4xl font-bold gradient-text leading-relaxed text-center">
+          <h3 className="font-bold gradient-text leading-relaxed text-center" style={{fontSize: '1.8rem'}}>
             {question.question}
           </h3>
           <Sparkles className="text-purple-400 w-7 h-7 animate-pulse" />
         </motion.div>
       </div>
 
-      <div className="grid gap-16 md:gap-20 relative z-10">
+      <div className="grid gap-8 md:gap-10 relative z-10">
         <motion.button
           initial={{ opacity: 0, x: -100, scale: 0.8 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
@@ -74,22 +74,28 @@ export default function QuestionCard({ question, onAnswer, onPrevious, questionN
           whileHover={{ scale: 1.03, x: 8, rotateY: 5, y: -8 }}
           whileTap={{ scale: 0.97 }}
           onClick={() => onAnswer('A')}
-          className="group w-full py-16 px-12 md:py-20 md:px-16 rounded-3xl text-left transition-all duration-300 shadow-xl hover:shadow-2xl love-card relative overflow-hidden border-4 border-pink-200 hover:border-pink-300"
-          style={{background: 'linear-gradient(135deg, #fdf2f8, #fce7f3, #fce7f3)'}}
+          className="group w-full rounded-3xl text-left transition-all duration-300 shadow-xl hover:shadow-2xl love-card relative overflow-hidden"
+          style={{
+            background: 'linear-gradient(135deg, #fdf2f8, #fce7f3, #fce7f3)',
+            padding: '2rem 1.5rem',
+            minHeight: '100px',
+            border: '3px solid #fce7f3',
+            cursor: 'pointer'
+          }}
         >
           <div className="absolute top-4 right-4 text-pink-300 text-3xl opacity-0 group-hover:opacity-100 transition-opacity animate-sparkle">💕</div>
           <div className="absolute -top-2 -right-2 w-10 h-10 bg-gradient-to-br from-pink-400 to-pink-500 rounded-full opacity-0 group-hover:opacity-100 animate-bounce"></div>
           
-          <div className="flex items-center gap-12">
+          <div className="flex items-center gap-6">
             <motion.div 
-              className="w-28 h-28 rounded-3xl flex items-center justify-center text-white font-bold text-4xl shadow-lg"
+              className="w-20 h-20 rounded-2xl flex items-center justify-center text-white font-bold text-2xl shadow-lg"
               style={{background: 'linear-gradient(135deg, #f472b6, #ec4899)'}}
               whileHover={{ scale: 1.15, rotate: 10 }}
               transition={{ type: "spring", stiffness: 400 }}
             >
               A
             </motion.div>
-            <span className="text-gray-800 font-semibold text-3xl md:text-4xl flex-1 leading-relaxed">
+            <span className="text-gray-800 font-semibold flex-1 leading-relaxed" style={{fontSize: '1.2rem'}}>
               {question.optionA}
             </span>
           </div>
@@ -102,22 +108,28 @@ export default function QuestionCard({ question, onAnswer, onPrevious, questionN
           whileHover={{ scale: 1.03, x: 8, rotateY: -5, y: -8 }}
           whileTap={{ scale: 0.97 }}
           onClick={() => onAnswer('B')}
-          className="group w-full py-16 px-12 md:py-20 md:px-16 rounded-3xl text-left transition-all duration-300 shadow-xl hover:shadow-2xl love-card relative overflow-hidden border-4 border-purple-200 hover:border-purple-300"
-          style={{background: 'linear-gradient(135deg, #f3e8ff, #e0e7ff, #e0e7ff)'}}
+          className="group w-full rounded-3xl text-left transition-all duration-300 shadow-xl hover:shadow-2xl love-card relative overflow-hidden"
+          style={{
+            background: 'linear-gradient(135deg, #f3e8ff, #e0e7ff, #e0e7ff)',
+            padding: '2rem 1.5rem',
+            minHeight: '100px',
+            border: '3px solid #e0e7ff',
+            cursor: 'pointer'
+          }}
         >
           <div className="absolute top-4 right-4 text-purple-300 text-3xl opacity-0 group-hover:opacity-100 transition-opacity animate-sparkle">💜</div>
           <div className="absolute -top-2 -right-2 w-10 h-10 bg-gradient-to-br from-purple-400 to-purple-500 rounded-full opacity-0 group-hover:opacity-100 animate-bounce"></div>
           
-          <div className="flex items-center gap-12">
+          <div className="flex items-center gap-6">
             <motion.div 
-              className="w-28 h-28 rounded-3xl flex items-center justify-center text-white font-bold text-4xl shadow-lg"
+              className="w-20 h-20 rounded-2xl flex items-center justify-center text-white font-bold text-2xl shadow-lg"
               style={{background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)'}}
               whileHover={{ scale: 1.15, rotate: -10 }}
               transition={{ type: "spring", stiffness: 400 }}
             >
               B
             </motion.div>
-            <span className="text-gray-800 font-semibold text-3xl md:text-4xl flex-1 leading-relaxed">
+            <span className="text-gray-800 font-semibold flex-1 leading-relaxed" style={{fontSize: '1.2rem'}}>
               {question.optionB}
             </span>
           </div>
